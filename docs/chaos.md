@@ -40,6 +40,19 @@ Utter Chaos, teleports the fighter 30-90 m). Hits: `KICK_2` 30 -> 16 (everything
 The move names are from the Final Fantasy Wiki move list matched against the animation data (hit names `CLAW`, `FANG`, `KICK`, projectile
 counts); Divine Punishment / Soul of Oblivion are the least certain.
 
+## How the installer works (`install_chaos.py`)
+
+It reads the boss' model / costume file / voice bank / move file / portrait from `<game>/disc0`, patches the move file and portrait
+(`tools/make_objx.py`, `tools/make_hud.py`), runs the game's own `tools/new_character.py` into `<game>/mods` (slot 35, `chs100`, like
+Feral Chaos for the menu plumbing), then swaps in the boss' costume data, voice bank (`voice_p_chs100_s_hard.scd`), face strip, banner and
+talk portraits. `extra_abilities.json` (the kit) is merged into the mods folder's own file. Nothing from the game is stored in the package.
+
+**Memory budget.** An extra character makes the menu pack and `main.bin` bigger than retail, and the battle then fails to load in the
+game's main heap (`[MODELS] heap ... alloc(...) FAILED`, "Now Loading" for good) unless the model budget is raised. The runtime raises it
+only when a file in `mods/obj/` is bigger than a retail model (2,506,752 B), or with `PSPRECOMP_MODEL_BUDGET`. The installer therefore
+pads the manikin body `p_chs100_zako.gmo`, which no player ever uses, with zeros to 2,600,000 B, which has the same effect as
+`PSPRECOMP_MODEL_BUDGET=2600000` and needs no launch setting.
+
 ## Known gaps
 
 - **EX Burst**: Chaos has no EX Burst assets (caption, sequence, rows `1200` / `1210`). Entering EX Mode works; the burst itself is untested.

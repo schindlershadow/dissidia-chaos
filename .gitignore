@@ -6,3 +6,4 @@ __pycache__/
 *.scd
 *.gim
 *.objx
+dist/

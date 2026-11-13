@@ -38,6 +38,12 @@ ARGS=()
 python3 "$T/new_character.py" --work "$WORK" --mods "$MODS" --slot 35 --code $CODE --like org210 --name Chaos \
   --series "FINAL FANTASY" "${ARGS[@]}" --model "$TMP/body.gmo" --objx "$TMP/p_chaos.objx" >/dev/null
 
+# padding on the unused manikin body makes the game raise its model budget (see install_chaos.py)
+python3 - "$MODS/obj/p_${CODE}_zako.gmo" <<'PY'
+import sys
+f = open(sys.argv[1], "ab"); n = 2600000 - f.tell()
+f.write(bytes(max(n, 0)))
+PY
 # the boss' costume data names the voice-bank suffix (_s_hard); the bank, face strip, encounter banner and talk portraits are his too
 for v in 1p 2p zako; do cp "$TMP/body.cosx" "$MODS/obj/p_${CODE}_$v.cosx"; done
 rm -f "$MODS"/voice/en/battle/voice_p_${CODE}_*.scd

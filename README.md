@@ -1,32 +1,44 @@
 # Playable Chaos for Dissidia 012 (recomp)
 
-Normal Chaos (the final boss) as a playable roster character for the [Dissidia 012 native build](https://github.com/schindlershadow/dissidia).
-Roster slot 35, code `chs100`, built from **your own game data**: this repository holds no Square Enix files (no models, voice banks,
-move files or pictures). `build.sh` reads them from your extracted disc and writes a mods folder.
+Normal Chaos, the final boss, as a playable character in the [Dissidia 012 native build](https://github.com/schindlershadow/dissidia):
+8 brave attacks and 5 HP attacks (Darkflame Talon, Earthwalker, Earthcrusher, Onslaught, Darkflame Fang, Darkflame Blast, The Fall,
+Negashock; Condemn, Scarlet Rain, Divine Punishment, Soul of Oblivion), his own model, voice and portrait.
 
-## Use
+## Install
 
-```
-DISSIDIA_REPO=~/code/dissidia/psprecomp/games/dissidia \
-WORK=~/dissidia/work \          # work folder with disc0/ (setup_from_iso.py)
-ART=./art \                     # optional: chaos_head.png, chaos_full.png, chaos_logo.png (menu pictures; without them Feral Chaos's are used)
-./build.sh                      # -> ./mods
-WORK=~/Games/Dissidia012 ./run.sh   # runs the game with PSPRECOMP_MODS=./mods, PSPRECOMP_ROSTER_EXPERIMENTAL=1, PSPRECOMP_MODEL_BUDGET=2600000
-```
+You need the game installed with the recomp's setup wizard (release **v0.1.8 or newer**) and Python **3.11 or newer**.
 
-Chaos is the last tile of the third row of the Quick Battle grid. Both players of a multiplayer match need the same mod folder
-(nothing checks it; a player without it has no character 35).
+1. Download `DissidiaChaos-<version>.zip` from the [Releases](https://github.com/schindlershadow/dissidia-chaos/releases) page and unzip it.
+2. Run `install.bat` (Windows) or `./install.sh` (Linux). It finds your game folder (`~/Games/Dissidia012` by default) or asks for it.
+   The first run downloads about 60 MB of Python packages for the game's tools, and three menu pictures.
+3. Start the game. Chaos is the last tile of the third row on the Quick Battle character select.
 
-## What it is
+To remove him again: `install.bat --uninstall` / `./install.sh --uninstall`. Other mods in your game's `mods` folder are left alone, and
+running the installer again just updates Chaos.
 
-- Body, costume data, voice and moves are the boss' third form (`obj/p_org200_s_hard.*`, `obj/p_org200_02.objx`): the most complete
-  animation set of the three. `tools/make_objx.py` gives the one move without an animation (Demonsdance) a stand-in, clears the
-  boss-phase tags on Earthcrusher's steps and lowers `KICK_2` from 30 to 16.
-- `extra_abilities.json`: the kit, 8 brave (Darkflame Talon, Earthwalker, Earthcrusher, Onslaught; Darkflame Fang, Darkflame Blast,
-  The Fall, Negashock) and 5 HP (Condemn, Scarlet Rain, Divine Punishment, Soul of Oblivion ground and midair) with names from the
-  Final Fantasy Wiki's move list matched against the animation data. Demonsdance and the Utter Chaos pieces are left out.
-- `tools/make_hud.py`: the boss' picture as a compact HUD cut-out that clears the HP bar and EX gauge.
-- Details, measurements and known gaps (EX Burst, victory pose, camera): [docs/chaos.md](docs/chaos.md).
+**Multiplayer:** both players need Chaos installed (nothing in the game checks that; a player without him has no character 35 and the
+match will desync or fail to load). Everyone in the match must also have the same game version.
 
-Needs the dissidia fork's `tools/` (`new_character.py`, `charmod_objx.py`, `gim_encode.py`, `package_extract.py`) with the `set_cmd`
-ability option (`roster_mainbin.py`, on `main`), and Pillow / numpy (the fork's `pydeps` installs them).
+Options: `--game DIR` (the install folder, the one with `disc0/`), `--no-download` (skip the menu pictures; Feral Chaos's are used),
+`--art DIR` (your own `chaos_head.png`, `chaos_full.png`, `chaos_logo.png`).
+
+## What is in it, and what is not
+
+This package holds **no Square Enix files**: no models, voices, move files or pictures. The installer reads the boss' model, costume data,
+voice bank and move set from your own game (`disc0/`), changes what needs changing and writes the result into the game's `mods` folder.
+The menu pictures (character select tile, slide-in, logo) are fan wiki artwork that is downloaded when you install.
+
+- Body, voice and moves are the boss' third form, the most complete of the three. `tools/make_objx.py` gives Demonsdance's slot an
+  animation, clears boss-phase tags on Earthcrusher's steps and lowers `KICK_2` (The Fall) from 30 to 16. Demonsdance and the Utter Chaos
+  pieces are left out.
+- `tools/make_hud.py` frames his portrait as a compact HUD cut-out that clears the HP bar and the EX gauge.
+- Known gaps: **EX Burst** (the boss has none; untested), victory pose and camera, alternate costumes are the same body.
+  Details and measurements: [docs/chaos.md](docs/chaos.md).
+
+## For developers
+
+`build.sh` builds the same thing from a source checkout of the recomp (`DISSIDIA_REPO`, `WORK`, `MODS`, `ART`), `run.sh` starts the game with
+the settings used while testing. `package.py` makes the release zip. The installer uses the game's own `tools/` (`new_character.py`,
+`roster_mainbin.py` with the `set_cmd` ability option, `charmod_objx.py`, `gim_encode.py`, `package_extract.py`).
+
+MIT licensed (scripts and text only; see `LICENSE`).
