@@ -1,0 +1,8 @@
+mods/
+art/
+__pycache__/
+*.gmo
+*.cosx
+*.scd
+*.gim
+*.objx

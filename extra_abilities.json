@@ -1,0 +1,127 @@
+{
+ "chs100": {
+  "01": {
+   "cmd": "0x3EB",
+   "set_cmd": "0x218",
+   "type": "brave",
+   "phase": "ground",
+   "name": "Darkflame Talon {ground}",
+   "help": "Chaos spins forward slashing, then\nslashes a third time."
+  },
+  "02": {
+   "cmd": "0x3EC",
+   "set_cmd": "0x219",
+   "type": "brave",
+   "phase": "ground",
+   "name": "Earthwalker {ground}",
+   "help": "Chaos flips and sends a wave of\nfire along the ground."
+  },
+  "03": {
+   "cmd": "0x3ED",
+   "set_cmd": "0x21A",
+   "type": "brave",
+   "phase": "ground",
+   "name": "Earthcrusher {ground}",
+   "help": "Earthwalker, repeated three times."
+  },
+  "04": {
+   "cmd": "0x3EE",
+   "set_cmd": "0x227",
+   "type": "brave",
+   "phase": "ground",
+   "name": "Chaos Strike (227) {ground}",
+   "help": "Boss move 227: not identified yet.",
+   "disabled": true
+  },
+  "05": {
+   "cmd": "0x3EF",
+   "set_cmd": "0x21B",
+   "type": "brave",
+   "phase": "midair",
+   "name": "Darkflame Fang {midair}",
+   "help": "Chaos slashes three times while in\nthe air."
+  },
+  "06": {
+   "cmd": "0x3F0",
+   "set_cmd": "0x21C",
+   "type": "brave",
+   "phase": "midair",
+   "name": "Darkflame Blast {midair}",
+   "help": "Chaos shoots several balls of\nflame that spread outwards."
+  },
+  "07": {
+   "cmd": "0x3F1",
+   "set_cmd": "0x21D",
+   "type": "brave",
+   "phase": "midair",
+   "name": "The Fall {midair}",
+   "help": "A diving kick that slams into the\nground."
+  },
+  "08": {
+   "cmd": "0x3F2",
+   "set_cmd": "0x21F",
+   "type": "brave",
+   "phase": "ground",
+   "name": "Onslaught {ground}",
+   "help": "Chaos teleports and delivers an\nuppercut, three times."
+  },
+  "09": {
+   "cmd": "0x3F3",
+   "set_cmd": "0x220",
+   "type": "hp",
+   "phase": "ground",
+   "name": "Condemn",
+   "help": "Chaos draws the player in and\nunleashes a pillar of flame."
+  },
+  "0A": {
+   "cmd": "0x3F4",
+   "set_cmd": "0x221",
+   "type": "hp",
+   "phase": "midair",
+   "name": "Divine Punishment",
+   "help": "Pillars of fire, then a blast of\nflame from above."
+  },
+  "0B": {
+   "cmd": "0x3F5",
+   "set_cmd": "0x222",
+   "type": "hp",
+   "phase": "midair",
+   "name": "Soul of Oblivion {midair}",
+   "help": "A massive fireball, then a stream\nof flame."
+  },
+  "0C": {
+   "cmd": "0x3F6",
+   "set_cmd": "0x223",
+   "type": "hp",
+   "phase": "ground",
+   "name": "Soul of Oblivion {ground}",
+   "help": "A massive fireball, then a stream\nof flame."
+  },
+  "0D": {
+   "cmd": "0x401",
+   "set_cmd": "0x224",
+   "type": "hp",
+   "phase": "midair",
+   "name": "Demonsdance",
+   "help": "Chaos teleports around, slashing\nrapidly.",
+   "disabled": true
+  },
+  "0E": {
+   "cmd": "0x3F8",
+   "set_cmd": "0x225",
+   "type": "hp",
+   "phase": "ground",
+   "name": "Scarlet Rain",
+   "help": "A magma wave and fireballs. Chaos\nis invincible while casting."
+  },
+  "0F": {
+   "copy": "05",
+   "cmd": "0x21E",
+   "type": "brave",
+   "phase": "midair",
+   "name": "Negashock {midair}",
+   "help": "Chaos spins around, unleashing\nwaves of energy.",
+   "learn": 1
+  }
+ }
+}
